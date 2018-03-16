@@ -35,7 +35,8 @@ t1.start()
 
 if not os.path.isfile(tempfile0):
 	print 'will switch to resolution 17'
-	xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.SetSettingValue","id":1,"params":{"setting":"videoscreen.resolution","value":' + 17 + '}}')
+	
+	xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.SetSettingValue", "params":{"setting":"videoscreen.resolution","value":17},"id":1}')
 	tempfile = open(tempfile0, "a")
 	tempfile.close()
 	
@@ -44,7 +45,8 @@ if not os.path.isfile(tempfile0):
 	
 else:
 	print 'will switch to resolution 20'
-	xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.SetSettingValue","id":1,"params":{"setting":"videoscreen.resolution","value":' + 20 + '}}')
+	xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.SetSettingValue", "params":{"setting":"videoscreen.resolution","value":20},"id":1}')
+	#xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.SetSettingValue","id":1,"params":{"setting":"videoscreen.resolution","value":' + 20 + '}}')
 	os.remove(tempfile0)
 #	thread2.join(2)
 
