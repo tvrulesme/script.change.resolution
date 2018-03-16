@@ -27,6 +27,8 @@ pydevd.settrace('192.168.0.55',stdoutToServer=True, stderrToServer=True)
 tempdir = xbmc.translatePath('special://temp/')
 tempfile0 = os.path.join(tempdir, 'reslutiontoggle0')
 
+global hasRun
+
 hasRun = False
 
 yesNoDialog().start()
