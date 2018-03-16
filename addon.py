@@ -2,14 +2,15 @@
 #import xbmcgui
 import os
 import xbmc
-#import pydevd
+import pydevd
 import time
 import threading
 
 
 global hasRun
 
-def yesNoDialog():
+class YesNoDialog(threading.Thread):
+	def start(self):
 		while not hasRun:
 			if xbmc.getCondVisibility("Window.isVisible(yesnodialog)"):
 				print 'clicking yesnodialog'
@@ -17,9 +18,14 @@ def yesNoDialog():
 			else:
 				time.sleep(1)
 				print 'running window checker'
+
+
+		
 				
 def sendCommand(res):
 	xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.SetSettingValue", "params":{"setting":"videoscreen.resolution","value":'+res+'},"id":1}')
+	
+pydevd.settrace('192.168.0.55', stdoutToServer=True, stderrToServer=True)
 
 tempdir = xbmc.translatePath('special://temp/')
 tempfile0 = os.path.join(tempdir, 'reslutiontoggle0')
@@ -28,7 +34,7 @@ tempfile0 = os.path.join(tempdir, 'reslutiontoggle0')
 hasRun = False
 print 'set hasrun'
 
-t1 = threading.Thread(target=yesNoDialog)
+t1 = YesNoDialog()
 t1.start()
 
 if not os.path.isfile(tempfile0):
@@ -44,4 +50,5 @@ else:
 
 hasRun = True	
 print 'done'
-quit()
+t1.join(3)
+#quit()
