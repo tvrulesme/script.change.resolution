@@ -7,7 +7,7 @@ import time
 
 from threading import Thread
 
-hasRun = False
+
 
 class yesNoDialog(Thread):
 	def run(self):
@@ -26,6 +26,8 @@ pydevd.settrace('192.168.0.55',stdoutToServer=True, stderrToServer=True)
 
 tempdir = xbmc.translatePath('special://temp/')
 tempfile0 = os.path.join(tempdir, 'reslutiontoggle0')
+
+hasRun = False
 
 yesNoDialog().start()
 
