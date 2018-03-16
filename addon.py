@@ -28,6 +28,7 @@ tempfile0 = os.path.join(tempdir, 'reslutiontoggle0')
 
 
 hasRun = False
+print 'set hasrun'
 
 t1 = threading.Thread(target=yesNoDialog)
 t1.start()
