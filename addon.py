@@ -15,8 +15,11 @@ def yesNoDialog():
 				print 'clicking yesnodialog'
 				xbmc.executebuiltin('SendClick(11)')
 			else:
-				time.sleep(2)
+				time.sleep(1)
 				print 'running window checker'
+				
+def sendCommand(res):
+	xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.SetSettingValue", "params":{"setting":"videoscreen.resolution","value":'+res+'},"id":1}')
 
 tempdir = xbmc.translatePath('special://temp/')
 tempfile0 = os.path.join(tempdir, 'reslutiontoggle0')
@@ -30,13 +33,13 @@ t1.start()
 
 if not os.path.isfile(tempfile0):
 	print 'will switch to resolution 17'
-	xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.SetSettingValue", "params":{"setting":"videoscreen.resolution","value":17},"id":1}')
+	sendCommand('17')
 	tempfile = open(tempfile0, "a")
 	tempfile.close()
 	
 else:
 	print 'will switch to resolution 20'
-	xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.SetSettingValue", "params":{"setting":"videoscreen.resolution","value":20},"id":1}')
+	sendCommand('20')
 	os.remove(tempfile0)
 
 hasRun = True	
