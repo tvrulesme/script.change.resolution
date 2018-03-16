@@ -4,7 +4,7 @@ import os
 import xbmc
 import time
 import threading
-import pydevd
+#import pydevd
 
 
 global hasRun
@@ -15,35 +15,32 @@ def yesNoDialog():
 				print 'clicking yesnodialog'
 				xbmc.executebuiltin('SendClick(11)')
 			else:
-				time.sleep(1)
-				print 'running window checker'
+				time.sleep(0.5)
 				
 def sendCommand(res):
 	xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.SetSettingValue", "params":{"setting":"videoscreen.resolution","value":'+res+'},"id":1}')
 
-pydevd.settrace('192.168.0.55', stdoutToServer=True, stderrToServer=True)
+#pydevd.settrace('192.168.0.55', stdoutToServer=True, stderrToServer=True)
 
 tempdir = xbmc.translatePath('special://temp/')
 tempfile0 = os.path.join(tempdir, 'reslutiontoggle0')
 
 
 hasRun = False
-print 'set hasrun'
 
 t1 = threading.Thread(target=yesNoDialog)
 t1.start()
 
 if not os.path.isfile(tempfile0):
-	print 'will switch to resolution 17'
+	print 'Switching to full screen resolution'
 	sendCommand('17')
 	tempfile = open(tempfile0, "a")
 	tempfile.close()
 	
 else:
-	print 'will switch to resolution 20'
+	print 'Switching to projector resolution'
 	sendCommand('20')
 	os.remove(tempfile0)
 
 hasRun = True	
-print 'done'
-quit()
+t1.join(3)
