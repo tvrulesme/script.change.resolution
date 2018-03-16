@@ -14,7 +14,7 @@ def yesNoDialog():
 			if xbmc.getCondVisibility("Window.isVisible(yesnodialog)"):
 				print 'clicking yesnodialog'
 				xbmc.executebuiltin('SendClick(11)')
-				hasRun = True
+				#hasRun = True
 			else:
 				time.sleep(2)
 				print 'running window checker'
