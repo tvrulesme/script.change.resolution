@@ -4,14 +4,12 @@ import os
 import xbmc
 import pydevd
 import time
-
-from threading import Thread
+import threading
 
 
 global hasRun
 
-class yesNoDialog(Thread):
-	def run(self):
+def yesNoDialog():
 		while not hasRun:
 			if xbmc.getCondVisibility("Window.isVisible(yesnodialog)"):
 				print 'clicking yesnodialog'
@@ -31,7 +29,8 @@ tempfile0 = os.path.join(tempdir, 'reslutiontoggle0')
 
 hasRun = False
 
-yesNoDialog().start()
+t1 = threading.Thread(target=yesNoDialog)
+t1.start()
 
 if not os.path.isfile(tempfile0):
 	print 'will switch to resolution 17'
