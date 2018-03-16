@@ -8,7 +8,7 @@ from threading import Thread
 
 def changeRes(res):
 	
-	
+	#move the yesno dialog code to thread
 	
 	xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.SetSettingValue","id":1,"params":{"setting":"videoscreen.resolution","value":' + res + '}}')
 	print '{"jsonrpc":"2.0","method":"Settings.SetSettingValue","params":{"setting":"videoscreen.resolution","value":' + res + '},"id":1}'
