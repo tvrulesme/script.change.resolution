@@ -29,7 +29,7 @@ pydevd.settrace('192.168.0.55', stdoutToServer=True, stderrToServer=True)
 json_string =  xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "Settings.getSettings", "params": {"level":"basic","filter": {"section": "system", "category": "display"}}}');
 parsed_json = json.loads(json_string)
 
-
+print(json_string)
 tempdir = xbmc.translatePath('special://temp/')
 tempfile0 = os.path.join(tempdir, 'reslutiontoggle0')
 
