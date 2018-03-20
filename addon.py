@@ -1,10 +1,12 @@
-#import xbmcaddon
+import xbmcaddon
 #import xbmcgui
 import os
 import xbmc
 import time
 import threading
-#import pydevd
+import xbmcgui
+import pydevd
+import json
 
 
 global hasRun
@@ -19,8 +21,14 @@ def yesNoDialog():
 				
 def sendCommand(res):
 	xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.SetSettingValue", "params":{"setting":"videoscreen.resolution","value":'+res+'},"id":1}')
+pydevd.settrace('192.168.0.55', stdoutToServer=True, stderrToServer=True)
 
-#pydevd.settrace('192.168.0.55', stdoutToServer=True, stderrToServer=True)
+
+
+
+json_string =  xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "Settings.getSettings", "params": {"level":"basic","filter": {"section": "system", "category": "display"}}}');
+parsed_json = json.loads(json_string)
+
 
 tempdir = xbmc.translatePath('special://temp/')
 tempfile0 = os.path.join(tempdir, 'reslutiontoggle0')
