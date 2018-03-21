@@ -23,7 +23,7 @@ def yesNoDialog():
 def sendCommand(res):
 	xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.SetSettingValue", "params":{"setting":"videoscreen.resolution","value":'+res+'},"id":1}')
 
-pydevd.settrace('192.168.0.55', stdoutToServer=True, stderrToServer=True)
+#pydevd.settrace('192.168.0.55', stdoutToServer=True, stderrToServer=True)
 
 #xbmcgui.
 
