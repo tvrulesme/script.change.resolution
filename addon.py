@@ -6,7 +6,7 @@ import time
 import threading
 #import xbmcgui
 import pydevd
-#import json
+import json
 #import sys
 
 
@@ -25,13 +25,19 @@ def sendCommand(res):
 
 #pydevd.settrace('192.168.0.55', stdoutToServer=True, stderrToServer=True)
 
+
+json_string =  xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "Settings.getSettings", "params": {"level":"basic","filter": {"section": "system", "category": "display"}}}');
+data = json.loads(json_string)
+defaultRes = data['result']['settings'][2]['default']
+
+
+
 #xbmcgui.
 
 
 
 
-#json_string =  xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "Settings.getSettings", "params": {"level":"basic","filter": {"section": "system", "category": "display"}}}');
-#parsed_json = json.loads(json_string)
+
 
 #resolutions = parsed_json['result']['settings'][2]['options']
 
