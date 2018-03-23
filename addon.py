@@ -26,9 +26,9 @@ def sendCommand(res):
 #pydevd.settrace('192.168.0.55', stdoutToServer=True, stderrToServer=True)
 
 
-json_string =  xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "Settings.getSettings", "params": {"level":"basic","filter": {"section": "system", "category": "display"}}}');
-data = json.loads(json_string)
-defaultRes = data['result']['settings'][2]['default']
+# json_string =  xbmc.executeJSONRPC('{"jsonrpc": "2.0", "id": 1, "method": "Settings.getSettings", "params": {"level":"basic","filter": {"section": "system", "category": "display"}}}');
+# data = json.loads(json_string)
+# defaultRes = data['result']['settings'][2]['default']
 
 
 
@@ -58,7 +58,7 @@ t1.start()
 
 if not os.path.isfile(tempfile0):
 	print 'Switching to full screen resolution'
-	sendCommand('17')
+	sendCommand('16')
 	tempfile = open(tempfile0, "a")
 	tempfile.close()
 	
